@@ -5,11 +5,8 @@
 *&---------------------------------------------------------------------*
 REPORT zma_08_inheritance.
 
-CLASS lcl_parent DEFINITION.
+DATA(lr_salesorder) = NEW zcl_salesdocument_salesorder( ).
+DATA(lr_delivery) = NEW zcl_salesdocument_delivery( ).
 
-ENDCLASS.
-
-CLASS lcl_parent IMPLEMENTATION.
-
-
-ENDCLASS.
+lr_salesorder->send_mail_to_customer( ).
+lr_delivery->send_mail_to_customer( ).
