@@ -26,4 +26,8 @@ cl_salv_table=>factory( IMPORTING r_salv_table   = DATA(lr_alv)
 DATA(lr_functions) = lr_alv->get_functions( ).
 lr_functions->set_all( ).
 
+DATA(lr_selections) = NEW cl_salv_selections( ).
+lr_selections = lr_alv->get_selections( ).
+lr_selections->set_selection_mode( if_salv_c_selection_mode=>row_column ).
+
 lr_alv->display( ).
