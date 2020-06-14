@@ -25,20 +25,8 @@ ENDCLASS.
 
 
 
-CLASS ycl_two_exception_models IMPLEMENTATION.
+CLASS YCL_TWO_EXCEPTION_MODELS IMPLEMENTATION.
 
-
-  METHOD get_url_old.
-
-    SELECT SINGLE url FROM scarr INTO rv_url
-        WHERE carrid = ip_carrid.
-    IF sy-subrc <> 0.
-      RAISE not_found.
-    ELSEIF rv_url IS INITIAL.
-      RAISE no_url_maintained.
-    ENDIF.
-
-  ENDMETHOD.
 
   METHOD get_url_new.
 
@@ -53,6 +41,19 @@ CLASS ycl_two_exception_models IMPLEMENTATION.
           t100_msgv2 = 'SCARR'.
     ENDIF.
 
+
   ENDMETHOD.
 
+
+  METHOD get_url_old.
+
+    SELECT SINGLE url FROM scarr INTO rv_url
+        WHERE carrid = ip_carrid.
+    IF sy-subrc <> 0.
+      RAISE not_found.
+    ELSEIF rv_url IS INITIAL.
+      RAISE no_url_maintained.
+    ENDIF.
+
+  ENDMETHOD.
 ENDCLASS.
